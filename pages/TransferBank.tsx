@@ -5,7 +5,7 @@ import scb from '../public/scb.jpg'
 import sri from '../public/krungsri.png'
 import thai from '../public/krungthai.png'
 import bank from '../public/kbank-icon.png'
-function Transfer() {
+function TransferBank() {
     return (
         <div>
             <ul className="flex bg-gradient-to-b h-20 from-[#EB5F59] to-[#F6B552] justify-start py-8">
@@ -113,4 +113,4 @@ function Transfer() {
     )
 }
 
-export default Transfer
+export default TransferBank
