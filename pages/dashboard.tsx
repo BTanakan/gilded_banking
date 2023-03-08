@@ -166,11 +166,11 @@ const DashboardPage = () => {
         {history.map((h, index) => (
           <div className="border-b mb-5 border-black columns-2">
           <div className="">
-            <p className="text-lg font-bold">{h.type}</p>
+            <p className="text-lg font-bold capitalize ">{h.type}</p>
             <p className="text-xs">{h.transferTo}</p>
           </div>
           <div className="grid-rows-2 grid justify-end ">
-            <p className="text-lg font-bold text-right">{h.transfer_balance}</p>
+            <p className={`text-lg font-bold text-right ${h.type === 'transfer' ? 'text-red-600' : 'text-green-500'}`}>{h.transfer_balance}</p>
             <p className=" text-xs">{h.timestamp}</p>
           </div>
         </div>
