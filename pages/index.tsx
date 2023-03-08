@@ -1,48 +1,62 @@
 import Image from "next/image"
 import logo_imges from '../public/logo.png'
 import user_images from '../public/Imgespeople.jpg'
-import { initFirebase } from "./firebase";
-import {signInWithEmailAndPassword,  getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import { app, initFirebase } from "./firebase";
+import { signInWithEmailAndPassword, getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import Link from "next/link";
 import DashboardPage from "./dashboard";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useRouter } from "next/router";
 import { useAuth } from "./AuthContext";
-import { useState } from "react";
-import firebase from "../pages/firebase-client";
-
-
+import { useEffect, useState } from "react";
+import "firebase/firestore";
+import firebase from "firebase/app";
+import { collection, addDoc, getFirestore } from "firebase/firestore";
 export default function Home() {
 
   initFirebase();
+  
   const provider = new GoogleAuthProvider();
   const auth = getAuth();
   const [user, loading] = useAuthState(auth);
   const router = useRouter();
-  
+
 
   const { user2, login } = useAuth();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+
+
+  const [formData, setFormData] = useState({
+    userId: "",
+    email: ""
+  });
+
+  
+
   const handleEmailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(event.target.value);
+    setFormData({...formData, email: event.target.value});
   };
 
   const handlePasswordChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setPassword(event.target.value);
   };
 
-
   const handleLogin = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     try {
       console.log(email);
       console.log(password);
-      await  signInWithEmailAndPassword(auth, email, password);
+      await signInWithEmailAndPassword(auth, email, password); 
+     
     } catch (error) {
       console.error(error);
     }
   };
+
+
 
   if (loading) {
     return <div className="">Loading...</div>
@@ -59,20 +73,24 @@ export default function Home() {
   }
 
 
-
+  function writeuserData() {
+    useEffect(() => {
+      
+    });
+  }
 
   return (
 
 
     <div className="bg-white h-screen">
-      <div className="">
+      {/* <div className="">
         <div className="">Please sign in to connect</div>
         <button onClick={signIn}>
           <div className="">
             Sign In
           </div>
         </button>
-      </div>
+      </div> */}
 
       <div className=" shadow-md shadow-[#18274b40]  relative bg-gradient-to-b h-48 mx-5 my-5 from-[#EB5F59] to-[#F6B552]">
         <div className=" h-32 w-32 bg-white absolute -top-10 -left-10 rounded-full"></div>
@@ -89,11 +107,11 @@ export default function Home() {
       <div className="mx-5 mt-24 ">
         <form onSubmit={handleLogin}>
           <div className="mb-4 ">
-            <input type="email" value={email} onChange={handleEmailChange}  className="shadow-md shadow-[#18274b40] border rounded-full   py-2 px-3 w-full placeholder-[#ACACAC] font-bold" placeholder="Email"></input>
+            <input type="email" value={email} onChange={handleEmailChange} className="shadow-md shadow-[#18274b40] border rounded-full   py-2 px-3 w-full placeholder-[#ACACAC] font-bold" placeholder="Email"></input>
           </div>
 
           <div className="mb-4">
-            <input type="password" value={password} onChange={handlePasswordChange}   className=" shadow-md shadow-[#18274b40] border rounded-full py-2 px-3 w-full placeholder-[#F6B552] font-bold" placeholder="* * * * * * * *"></input>
+            <input type="password" value={password} onChange={handlePasswordChange} className=" shadow-md shadow-[#18274b40] border rounded-full py-2 px-3 w-full placeholder-[#F6B552] font-bold" placeholder="* * * * * * * *"></input>
           </div>
           <div className="flex justify-end">
             <a href="#" className=" text-[#EB5F59] mb-4 font-bold">Forgot Password?</a>
