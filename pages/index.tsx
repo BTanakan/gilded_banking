@@ -12,7 +12,6 @@ import { useEffect, useState } from "react";
 import "firebase/firestore";
 import firebase from "firebase/app";
 import { collection, addDoc, getFirestore } from "firebase/firestore";
-import { addUser } from "./controller";
 export default function Home() {
 
   initFirebase();
@@ -84,14 +83,14 @@ export default function Home() {
 
 
     <div className="bg-white h-screen">
-      <div className="">
+      {/* <div className="">
         <div className="">Please sign in to connect</div>
         <button onClick={signIn}>
           <div className="">
             Sign In
           </div>
         </button>
-      </div>
+      </div> */}
 
       <div className=" shadow-md shadow-[#18274b40]  relative bg-gradient-to-b h-48 mx-5 my-5 from-[#EB5F59] to-[#F6B552]">
         <div className=" h-32 w-32 bg-white absolute -top-10 -left-10 rounded-full"></div>
