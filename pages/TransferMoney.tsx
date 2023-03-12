@@ -78,18 +78,18 @@ function TransferMoney() {
             </div>
             <form action="">
                 <div className="relative z-0 w-full mb-6 group px-5">
-
-                    <input type="text" name="floating_email" id="floating_email" className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+                    
+                    <input type="text" name="floating_email" id="floating_email" className="block py-2.5 px-0 w-full text-center text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-dark dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder="" required />
 
                 </div>
                 <div className='px-5'>
-                    
-                    <input type="text" id="small-input" className="block w-full p-2 text-gray-400 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs focus:ring-blue-500 focus:border-blue-500 gray:bg-gray-700 gray:border-gray-600 gray:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"></input>
+            
+                    <input type="text" id="small-input" className="block w-full p-2 text-gray-400 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs focus:ring-blue-500 focus:border-blue-500 gray:bg-gray-700 gray:border-gray-600 gray:placeholder-gray-400 dark:text-dark dark:focus:ring-blue-500 dark:focus:border-blue-500 placeholder-[#F6B552] font-bold"  placeholder="Recode" ></input>
                     
                 </div>
                 <div className='py-5'></div>
                 <div className='text-center'>
-                    <button type="submit" className=" text-xl shadow-md shadow-[#18274b40] rounded-full py-2 px-10 w-50 text-white font-bold  bg-gradient-to-l from-[#F6B552] to-[#EB5F59]">Information checking</button>
+                    <button type="submit" className=" text-xl shadow-md shadow-[#18274b40] rounded-lg py-2 px-10 w-50 text-white font-bold  bg-gradient-to-l from-[#F6B552] to-[#EB5F59]">Information checking</button>
                 </div>
                 
             </form>
