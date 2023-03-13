@@ -1,6 +1,25 @@
 import React from 'react'
 import Link from 'next/link'
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { getAuth } from 'firebase/auth';
+import { useRouter } from 'next/router';
+import { initFirebase } from './firebase';
+
 function SettingA() {
+    initFirebase();
+    const auth = getAuth();
+  const [user, loading] = useAuthState(auth);
+  const router = useRouter();
+
+    if (loading) {
+        return <div className="">Loading...</div>
+      }
+    
+      if (!user) {
+        router.push("/");
+        //return <div className="">Welcome {user.displayName}</div>
+      }
+
     return (
         <div>
             <div className='bg-gradient-to-b h-20 from-[#EB5F59] to-[#F6B552] flex py-6 justify-between'>

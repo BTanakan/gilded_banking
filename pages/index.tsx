@@ -11,7 +11,7 @@ import { useAuth } from "./AuthContext";
 import { useEffect, useState } from "react";
 import "firebase/firestore";
 import firebase from "firebase/app";
-import { collection, addDoc, getFirestore } from "firebase/firestore";
+import { collection, addDoc, getFirestore, getDocs, query, where } from "firebase/firestore";
 export default function Home() {
 
   initFirebase();
@@ -26,6 +26,9 @@ export default function Home() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  const db = getFirestore(initFirebase()); //initalFirebase.
+  const userCollectionRef = collection(db, "users");
+  
 
 
   const [formData, setFormData] = useState({
@@ -47,10 +50,25 @@ export default function Home() {
   const handleLogin = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     try {
-      console.log(email);
-      console.log(password);
-      await signInWithEmailAndPassword(auth, email, password); 
-     
+      
+     // await signInWithEmailAndPassword(auth, email, password); 
+
+     await signInWithEmailAndPassword(auth, email, password).then((respone) => {
+      console.log(respone.user);
+       sessionStorage.setItem('Token', respone.user.email!);
+     })
+
+     const userinfo = await getDocs(query(userCollectionRef, where('email', '==', email)));
+      if (userinfo.empty) {
+          throw new Error(`No user found`);
+        }
+
+        const userDoc = userinfo.docs[0];
+        const userPin = userDoc.data().pin;
+        console.log("userPin" + userPin);
+     await sessionStorage.setItem('Pin', userPin);
+     await sessionStorage.setItem("Email", userDoc.data().email);
+
     } catch (error) {
       console.error(error);
     }
@@ -63,7 +81,7 @@ export default function Home() {
   }
 
   if (user) {
-    router.push("dashboard");
+    router.push("pinScreen");
     return <div className="">Welcome {user.displayName}</div>
   }
 
