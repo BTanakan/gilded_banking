@@ -53,7 +53,7 @@ export const transfer = () => {
     const handtransfer = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         try {
-            console.log(from2);
+            console.log(user.email);
             console.log(to);
             console.log(amount);
            
