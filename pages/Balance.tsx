@@ -3,7 +3,14 @@ import Image from "next/image"
 import profile from '../public/zenitsu.jpg'
 import Link from 'next/link'
 import Navbar from '@/component/navbar'
+import { useRouter } from 'next/router'
+
 function Balance() {
+    const router = useRouter();
+    const handleLinkClick = () => {
+        router.push('/transfer');
+        
+      };
     return (
         <div>
             <div>
@@ -38,7 +45,7 @@ function Balance() {
                     <p>Quick access</p>
                 </div>
                 <div className='px-10  flex justify-between'>
-                    <button className="w-12 h-12 bg-red-400 rounded-full"></button>
+                    <button onClick={handleLinkClick} className="w-12 h-12 bg-red-400 rounded-full"></button>
                     <button className="w-12 h-12 bg-red-400 rounded-full"></button>
                     <button className="w-12 h-12 bg-red-400 rounded-full"></button>
                     <button className="w-12 h-12 bg-red-400 rounded-full"></button>
