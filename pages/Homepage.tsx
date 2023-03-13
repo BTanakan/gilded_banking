@@ -125,7 +125,7 @@ function Homepage() {
                 <div className='px-10  flex justify-around gap-4 text-black text-center'>
 
                     <div className="w-20">
-                        <button onClick={() => router.push("/TransferBank")} className="w-12 h-12 bg-red-400 rounded-full" >
+                        <button onClick={() => router.push("/TransferBank")} className="w-12 h-12 rounded-full" >
                             <Image
                                 src={transfer}
                                 alt=""
@@ -193,7 +193,7 @@ function Homepage() {
                         <p>Insurance</p>
                     </div>
                     <div className="w-20">
-                        <button className="w-12 h-12 bg-red-400 rounded-full">
+                        <button className="w-12 h-12  rounded-full">
                         <Image
                             src={lot}
                             alt=""
@@ -204,7 +204,7 @@ function Homepage() {
                         <p>Digital lottery</p>
                     </div>
                     <div className="w-20">
-                        <button className="w-12 h-12 bg-red-400 rounded-full">
+                        <button className="w-12 h-12 rounded-full">
                         <Image
                             src={other}
                             alt=""
@@ -223,7 +223,7 @@ function Homepage() {
                 <p>Favorite</p>
             </div>
             <div className='px-10 py-2 flex justify-between'>
-                <button className="w-12 h-12 bg-red-400 rounded-full">
+                <button className="w-12 h-12 rounded-full">
                     <Image
                         src={scb}
                         alt=""
@@ -231,7 +231,7 @@ function Homepage() {
                     >
                     </Image>
                 </button>
-                <button className="w-12 h-12 bg-red-400 rounded-full">
+                <button className="w-12 h-12  rounded-full">
                     <Image
                         src={sri}
                         alt=""
@@ -239,7 +239,7 @@ function Homepage() {
                     >
                     </Image>
                 </button>
-                <button className="w-12 h-12 bg-red-400 rounded-full">
+                <button className="w-12 h-12  rounded-full">
                     <Image
                         src={thai}
                         alt=""
@@ -247,7 +247,7 @@ function Homepage() {
                     >
                     </Image>
                 </button>
-                <button className="w-12 h-12 bg-red-400 rounded-full">
+                <button className="w-12 h-12 rounded-full">
                     <Image
                         src={other}
                         alt=""

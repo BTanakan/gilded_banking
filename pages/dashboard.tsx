@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { getDatabase } from "firebase/database";
 import { app, initFirebase } from "./firebase";
-import { addDoc, collection, doc, getDoc, getDocs, getFirestore, onSnapshot, query, QuerySnapshot, setDoc, Timestamp, where } from "firebase/firestore";
+import { addDoc, collection, doc, getDoc, getDocs, getFirestore, onSnapshot, orderBy, query, QuerySnapshot, setDoc, Timestamp, where } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import Navbar from "@/component/navbar";
@@ -162,8 +162,6 @@ const DashboardPage = () => {
 
 
           ))}
-          {/* <div className="">xxx-xxxxx-x</div> */}
-
           <div className="">
             <span className="font-bold">+</span>
             <span className=" font-bold"> View more</span>
@@ -175,8 +173,8 @@ const DashboardPage = () => {
       <div className="pt-10 px-10 bg-white absolute top-60 h-screen w-full">
         <p className="mb-5">Histroy</p>
 
-        {history.map((h, index) => (
-          <div className="border-b mb-5 border-black columns-2">
+        {history.sort((a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime()).map((h, index)   => (
+          <div className="border-b mb-5 border-black columns-2" key={index}>
             <div className="">
               <p className="text-lg font-bold capitalize ">{h.type}</p>
               <p className="text-xs">{h.transferTo == "" ? h.userId : h.transferTo}</p>
