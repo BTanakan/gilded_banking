@@ -1,13 +1,26 @@
 import React from 'react'
-import Link from 'next/link'
+import { useRouter } from "next/router";
+import insec from '../public/insec.jpg'
+import lot from '../public/lot.jpg'
+import found from '../public/found.png'
+import water from '../public/water.jpg'
+import Image from 'next/image';
 function Bill() {
+    const router = useRouter();
+    const handleLinkClick = () => {
+        router.push('/TransferBank');
+
+    };
     return (
         <div>
             <ul className="flex bg-gradient-to-b h-20 from-[#EB5F59] to-[#F6B552] justify-start py-8">
                 <li className='px-5 flex'>
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6 text-[#ffff]">
+                    <button onClick={() => router.push("/Homepage")}>
+                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6 text-[#ffff]">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
                     </svg>
+                    </button>
+                   
                     <span className='text-[#ffff] font-bold'>Back</span>
                 </li>
 
@@ -53,34 +66,54 @@ function Bill() {
             </div>
             <div className='py-5'></div>
             <div className='px-10 flex justify-between'>
-                <Link href="/Transfer">
-                    <button>
-                        <p className='font-bold text-lgS'>Bank account</p>
 
-                    </button>
-                </Link>
+                <button onClick={() => router.push("/TransferBank")}>
+                    <p className='font-bold text-lgS'>Bank account</p>
+
+                </button>
+
 
                 <button>
                     <p className='font-bold text-lgS'>Bill payment</p>
                     <div className="flex-grow border-t border-yellow-400"></div>
                 </button>
-                <button>
+                <button onClick={() => router.push("/History")}>
                     <p className='font-bold text-lgS'>History</p>
                 </button>
             </div>
 
             <div className='px-10 py-5 flex justify-between'>
                 <button className="w-12 h-12 bg-red-400 rounded-full">
-
+                    <Image
+                        src={insec}
+                        alt=""
+                        className="border-solid  border-2 rounded-full w-14 h-12"
+                    >
+                    </Image>
                 </button>
                 <button className="w-12 h-12 bg-red-400 rounded-full">
-
+                    <Image
+                        src={lot}
+                        alt=""
+                        className="border-solid  border-2 rounded-full w-14 h-12"
+                    >
+                    </Image>
+                </button>
+                <button className="w-12 h-12 bg-white-400 rounded-full">
+                    <Image
+                        src={found}
+                        alt=""
+                        className="border-solid  border-2 rounded-full w-14 h-12"
+                    >
+                    </Image>
                 </button>
                 <button className="w-12 h-12 bg-red-400 rounded-full">
-
-                </button>
-                <button className="w-12 h-12 bg-red-400 rounded-full">
-
+                    <Image
+                        src={water}
+                        alt=""
+                        className="border-solid  border-2 rounded-full w-14 h-12"
+                    >
+                    </Image>
                 </button>
 
             </div>

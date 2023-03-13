@@ -46,12 +46,12 @@ function TransferMoney() {
         }
     };
 
-    const getreviceDeposit =async () => {
+    const getreviceDeposit = async () => {
         const reviceDeposit = await sessionStorage.getItem("reciveDeposit");
         setreviceDeposit(reviceDeposit!);
         console.log("reviceDeposit" + reviceDeposit);
     }
-    useEffect(() =>  {
+    useEffect(() => {
 
         getUserById();
         getreviceDeposit();
@@ -60,8 +60,8 @@ function TransferMoney() {
 
     const [amount, setamount] = useState("");
 
-    const informationChecking = async () =>  {
-        await sessionStorage.setItem("Amount" , amount);
+    const informationChecking = async () => {
+        await sessionStorage.setItem("Amount", amount);
         router.push("/TransferConfirm");
         console.log(amount);
     };
@@ -71,9 +71,12 @@ function TransferMoney() {
         <div>
             <ul className="flex bg-gradient-to-b h-20 from-[#EB5F59] to-[#F6B552] justify-start py-8">
                 <li className='px-5 flex'>
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6 text-[#ffff]">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
-                    </svg>
+                    <button onClick={() => router.push("/Balance")}>
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6 text-[#ffff]">
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+                        </svg>
+                    </button>
+
                     <span className='text-[#ffff] font-bold'>Back</span>
                 </li>
 
@@ -97,18 +100,18 @@ function TransferMoney() {
             <div className="overflow-hidden shadow-lg relative bg-gradient-to-r h-30 mx-5 my-1 rounded-2xl from-[#EB5F59] to-[#F6CA83]">
 
 
-                {users.map((u, index)=> (
+                {users.map((u, index) => (
                     <div className="justify-between flex px-5 py-5  ">
-                    <div>
-                        <div className=" text-[#ffff]">Deposit</div>
-                        <div className=" text-[#ffff]">{u.bankno}</div>
-                    </div>
-                    <div>
-                        <div className=" text-[#ffff] font-bold text-2xl text-right">{u.balance}</div>
-                        <div className=" text-[#ffff] pl-16 font-bold ">Account</div>
-                    </div>
+                        <div>
+                            <div className=" text-[#ffff]">Deposit</div>
+                            <div className=" text-[#ffff]">{u.bankno}</div>
+                        </div>
+                        <div>
+                            <div className=" text-[#ffff] font-bold text-2xl text-right">{u.balance}</div>
+                            <div className=" text-[#ffff] pl-16 font-bold ">Account</div>
+                        </div>
 
-                </div>
+                    </div>
                 ))}
 
             </div>
@@ -126,7 +129,7 @@ function TransferMoney() {
             <div className="overflow-hidden shadow-lg relative bg-[#E8E8E8] h-30 mx-5 my-1 rounded-2xl ">
 
 
-            <div className="justify-between flex px-5 py-5  ">
+                <div className="justify-between flex px-5 py-5  ">
                     <div>
                         <div className=" text-black">{reviceDeposit}</div>
                         <div className=" text-black  font-bold">SCB</div>
@@ -144,23 +147,23 @@ function TransferMoney() {
 
 
             </div>
-            
-                <div className="relative z-0 w-full mb-6 group px-5">
 
-                    <input type="text" onChange={(e) => setamount(e.target.value)} className="block py-2.5 px-0 w-full text-center text-lg text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-dark dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder="0.0" required />
+            <div className="relative z-0 w-full mb-6 group px-5">
 
-                </div>
-                <div className='px-5'>
+                <input type="text" onChange={(e) => setamount(e.target.value)} className="block py-2.5 px-0 w-full text-center text-lg text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-dark dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder="0.0" required />
 
-                    <input type="text"  id="small-input" className="block w-full p-2 text-gray-400 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs focus:ring-blue-500 focus:border-blue-500 gray:bg-gray-700 gray:border-gray-600 gray:placeholder-gray-400 dark:text-dark dark:focus:ring-blue-500 dark:focus:border-blue-500 placeholder-[#F6B552] font-bold" placeholder="Recode" ></input>
+            </div>
+            <div className='px-5'>
 
-                </div>
-                <div className='py-5'></div>
-                <div className='text-center'>
-                    <button onClick={informationChecking} className=" text-xl shadow-md shadow-[#18274b40] rounded-lg py-2 px-10 w-50 text-white font-bold  bg-[#EB5F59]">Information checking</button>
-                </div>
+                <input type="text" id="small-input" className="block w-full p-2 text-gray-400 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs focus:ring-blue-500 focus:border-blue-500 gray:bg-gray-700 gray:border-gray-600 gray:placeholder-gray-400 dark:text-dark dark:focus:ring-blue-500 dark:focus:border-blue-500 placeholder-[#F6B552] font-bold" placeholder="Recode" ></input>
 
-            
+            </div>
+            <div className='py-5'></div>
+            <div className='text-center'>
+                <button onClick={informationChecking} className=" text-xl shadow-md shadow-[#18274b40] rounded-lg py-2 px-10 w-50 text-white font-bold  bg-[#EB5F59]">Information checking</button>
+            </div>
+
+
         </div>
     )
 }
