@@ -135,7 +135,7 @@ function Homepage() {
                         </button>
                         <p className='text-black'>Transfer money</p>
                     </div>
-                    <div className="border-2  w-20">
+                    <div className=" w-20">
                         <button className="w-12 h-12 bg-white-400 rounded-full" >
                             <Image
                                 src={withdraw}
@@ -146,7 +146,7 @@ function Homepage() {
                         </button>
                         <p>Withdraw cash</p>
                     </div>
-                    <div className="border-2  w-20">
+                    <div className=" w-20">
                         <button className="w-12 h-12 bg-white-400 rounded-full">
                             <Image
                                 src={fav}
@@ -157,7 +157,7 @@ function Homepage() {
                         </button>
                         <p>Favorite</p>
                     </div>
-                    <div className="border-2 w-20">
+                    <div className=" w-20">
                         <button className="w-12 h-12 bg-white-400 rounded-full">
                             <Image
                                 src={scan}
