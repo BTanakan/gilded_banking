@@ -39,7 +39,7 @@ export const pinScreen = () => {
 
             if (digits == pin) {
                 console.log("Verify Success.");
-                router.push("/dashboard");
+                router.push("/Homepage");
             } else {
                 router.push("/");
             }
@@ -111,6 +111,7 @@ export const pinScreen = () => {
                 />
                 <Numpad onDigitClick={handleDigitClick} onBackspace={handleBackspaceClick} />
             </div>
+            
 
 
 
