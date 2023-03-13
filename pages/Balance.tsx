@@ -3,6 +3,12 @@ import Image from "next/image"
 import profile from '../public/zenitsu.jpg'
 import Link from 'next/link'
 import Navbar from '@/component/navbar'
+import other from'../public/other.jpg'
+import scb from '../public/scb.jpg'
+import sri from '../public/krungsri.png'
+import thai from '../public/krungthai.png'
+import transfer from '../public/Transfer.jpg'
+import withdraw from '../public/withdraw.png'
 function Balance() {
     return (
         <div>
@@ -38,10 +44,38 @@ function Balance() {
                     <p>Quick access</p>
                 </div>
                 <div className='px-10  flex justify-between'>
-                    <button className="w-12 h-12 bg-red-400 rounded-full"></button>
-                    <button className="w-12 h-12 bg-red-400 rounded-full"></button>
-                    <button className="w-12 h-12 bg-red-400 rounded-full"></button>
-                    <button className="w-12 h-12 bg-red-400 rounded-full"></button>
+                <button className="w-12 h-12 bg-red-400 rounded-full">
+                    <Image
+                            src={scb}
+                            alt=""
+                            className="border-solid  border-2 rounded-full w-14 h-12"
+                        >
+                        </Image>
+                    </button>
+                    <button className="w-12 h-12 bg-red-400 rounded-full">
+                    <Image
+                            src={transfer}
+                            alt=""
+                            className="border-solid  border-2 rounded-full w-14 h-12"
+                        >
+                        </Image>
+                    </button>
+                    <button className="w-12 h-12 bg-red-400 rounded-full">
+                    <Image
+                            src={thai}
+                            alt=""
+                            className="border-solid  border-2 rounded-full w-14 h-12"
+                        >
+                        </Image>
+                    </button>
+                <button className="w-12 h-12 bg-red-400 rounded-full">
+                <Image
+                            src={withdraw}
+                            alt=""
+                            className="border-solid  border-2 rounded-full w-14 h-12"
+                        >
+                        </Image>
+                </button>
 
                 </div>
                 <div className="flex-grow mx-5 my-5 border-t border-gray-400"></div>
@@ -49,10 +83,38 @@ function Balance() {
                     <p>Favorite</p>
                 </div>
                 <div className='px-10 py-5 flex justify-between'>
-                    <button className="w-12 h-12 bg-red-400 rounded-full"></button>
-                    <button className="w-12 h-12 bg-red-400 rounded-full"></button>
-                    <button className="w-12 h-12 bg-red-400 rounded-full"></button>
-                    <button className="w-12 h-12 bg-red-400 rounded-full"></button>
+                <button className="w-12 h-12 bg-red-400 rounded-full">
+                    <Image
+                            src={scb}
+                            alt=""
+                            className="border-solid  border-2 rounded-full w-14 h-12"
+                        >
+                        </Image>
+                    </button>
+                    <button className="w-12 h-12 bg-red-400 rounded-full">
+                    <Image
+                            src={sri}
+                            alt=""
+                            className="border-solid  border-2 rounded-full w-14 h-12"
+                        >
+                        </Image>
+                    </button>
+                    <button className="w-12 h-12 bg-red-400 rounded-full">
+                    <Image
+                            src={thai}
+                            alt=""
+                            className="border-solid  border-2 rounded-full w-14 h-12"
+                        >
+                        </Image>
+                    </button>
+                <button className="w-12 h-12 bg-red-400 rounded-full">
+                <Image
+                            src={other}
+                            alt=""
+                            className="border-solid  border-2 rounded-full w-14 h-12"
+                        >
+                        </Image>
+                </button>
 
                 </div>
             </div>

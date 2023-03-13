@@ -3,6 +3,17 @@ import Link from 'next/link'
 import Image from "next/image"
 import profile from '../public/zenitsu.jpg'
 import Navbar from '@/component/navbar'
+import transfer from '../public/Transfer.jpg'
+import withdraw from '../public/withdraw.png'
+import fav from '../public/fav.png'
+import found from'../public/found.png'
+import scan from'../public/scan.png'
+import insec from'../public/insec.jpg'
+import lot from'../public/lot.jpg'
+import other from'../public/other.jpg'
+import scb from '../public/scb.jpg'
+import sri from '../public/krungsri.png'
+import thai from '../public/krungthai.png'
 function Homepage() {
     return (
         <div>
@@ -37,18 +48,74 @@ function Homepage() {
                 </div>
 
                 <div className='px-10  flex justify-between'>
-                    <button className="w-12 h-12 bg-red-400 rounded-full"></button>
-                    <button className="w-12 h-12 bg-red-400 rounded-full"></button>
-                    <button className="w-12 h-12 bg-red-400 rounded-full"></button>
-                    <button className="w-12 h-12 bg-red-400 rounded-full"></button>
+                    <button className="w-12 h-12 bg-white-400 rounded-full">
+                    <Image
+                            src={transfer}
+                            alt=""
+                            className="border-solid  border-2 rounded-full w-14 h-12"
+                        >
+                        </Image>
+                    </button>
+                    <button className="w-12 h-12 bg-white-400 rounded-full">
+                    <Image
+                            src={withdraw}
+                            alt=""
+                            className="border-solid  border-2 rounded-full w-14 h-12"
+                        >
+                        </Image>
+                    </button>
+                    <button className="w-12 h-12 bg-white-400 rounded-full">
+                    <Image
+                            src={fav}
+                            alt=""
+                            className="border-solid  border-2 rounded-full w-14 h-12"
+                        >
+                        </Image>
+                    </button>
+                    <button className="w-12 h-12 bg-white-400 rounded-full">
+                    <Image
+                            src={scan}
+                            alt=""
+                            className="border-solid  border-2 rounded-full w-14 h-12"
+                        >
+                        </Image>
+                    </button>
 
                 </div>
 
                 <div className='px-10 py-5 flex justify-between'>
-                    <button className="w-12 h-12 bg-red-400 rounded-full"></button>
-                    <button className="w-12 h-12 bg-red-400 rounded-full"></button>
-                    <button className="w-12 h-12 bg-red-400 rounded-full"></button>
-                    <button className="w-12 h-12 bg-red-400 rounded-full"></button>
+                    <button className="w-12 h-12 bg-white-400 rounded-full">
+                    <Image
+                            src={found}
+                            alt=""
+                            className="border-solid  border-2 rounded-full w-14 h-12"
+                        >
+                        </Image>
+                    </button>
+                    <button className="w-12 h-12 bg-white-400 rounded-full">
+                    <Image
+                            src={insec}
+                            alt=""
+                            className="border-solid  border-2 rounded-full w-14 h-12"
+                        >
+                        </Image>
+                    </button>
+                    <button className="w-12 h-12 bg-white-400 rounded-full">
+                    <Image
+                            src={lot}
+                            alt=""
+                            className="border-solid  border-2 rounded-full w-14 h-12"
+                        >
+                        </Image>
+                    </button>
+                    <button className="w-12 h-12 bg-white-400 rounded-full">
+                    <Image
+                            src={other}
+                            alt=""
+                            className="border-solid  border-2 rounded-full w-14 h-12"
+                        >
+                        </Image>
+                    </button>
                 </div>
 
             </div>
@@ -58,10 +125,38 @@ function Homepage() {
                 <p>Favorite</p>
             </div>
             <div className='px-10 py-2 flex justify-between'>
-                <button className="w-12 h-12 bg-red-400 rounded-full"></button>
-                <button className="w-12 h-12 bg-red-400 rounded-full"></button>
-                <button className="w-12 h-12 bg-red-400 rounded-full"></button>
-                <button className="w-12 h-12 bg-red-400 rounded-full"></button>
+            <button className="w-12 h-12 bg-red-400 rounded-full">
+                    <Image
+                            src={scb}
+                            alt=""
+                            className="border-solid  border-2 rounded-full w-14 h-12"
+                        >
+                        </Image>
+                    </button>
+                    <button className="w-12 h-12 bg-red-400 rounded-full">
+                    <Image
+                            src={sri}
+                            alt=""
+                            className="border-solid  border-2 rounded-full w-14 h-12"
+                        >
+                        </Image>
+                    </button>
+                    <button className="w-12 h-12 bg-red-400 rounded-full">
+                    <Image
+                            src={thai}
+                            alt=""
+                            className="border-solid  border-2 rounded-full w-14 h-12"
+                        >
+                        </Image>
+                    </button>
+                <button className="w-12 h-12 bg-red-400 rounded-full">
+                <Image
+                            src={other}
+                            alt=""
+                            className="border-solid  border-2 rounded-full w-14 h-12"
+                        >
+                        </Image>
+                </button>
 
             </div>
             <div className="overflow-hidden shadow-lg relative bg-gradient-to-b h-24 mx-5 my-5 rounded-2xl from-[#EB5F59] to-[#F6B552]">
