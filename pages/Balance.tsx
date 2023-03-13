@@ -11,8 +11,63 @@ import sri from '../public/krungsri.png'
 import thai from '../public/krungthai.png'
 import transfer from '../public/Transfer.jpg'
 import withdraw from '../public/withdraw.png'
+import { initFirebase } from './firebase'
+import { getAuth } from 'firebase/auth'
+import { useAuthState } from 'react-firebase-hooks/auth'
+import { collection, getDocs, getFirestore, query, where } from 'firebase/firestore'
+import { useEffect, useState } from "react";
 function Balance() {
     const router = useRouter();
+    initFirebase();
+    const auth = getAuth();
+    const [user, loading] = useAuthState(auth);
+
+    const db = getFirestore(initFirebase()); //initalFirebase.
+    const [users, setUsers] = useState<{ name: string, email: string, balance: string, bankno: string }[]>([]);
+    const userCollectionRef = collection(db, "users"); //Cloud firebase collection.
+
+    if (loading) { // slpash screen.
+        return <div className="">Loading...</div>
+    }
+
+    if (!user) { // check when user not authen.
+        router.push("/");
+        return <div className="">please sign in to continue.</div>
+    }
+
+    const getUserById = async () => {
+        try {
+            const email = await sessionStorage.getItem("Email");
+
+            const userinfo = await getDocs(query(userCollectionRef, where('email', '==', email)));
+
+            if (userinfo.empty) {
+                throw new Error(`No user found`);
+            }
+
+            const userDoc = userinfo.docs[0];
+            const userId = userDoc.data().userId;
+
+            const userList: { name: string, email: string, balance: string, bankno: string }[] = [];
+            userinfo.forEach(doc => {
+                const his_data = doc.data();
+                const { name, email, balance, bankno } = his_data;
+                userList.push({ name, email, balance, bankno })
+                console.log(his_data);
+                console.log(doc.data().bankno);
+
+            });
+            setUsers(userList);
+            // console.log(snapshot);
+        } catch (error) {
+            console.log(error);
+        }
+    };
+    useEffect(() => {
+
+        getUserById();
+    }, []);
+
     const handleLinkClick = () => {
         router.push('/TransferMoney');
         
@@ -23,7 +78,8 @@ function Balance() {
                 <div className='mx-5 mt-5 '>
                     <p>My Balance</p>
                 </div>
-                <div className="overflow-hidden shadow-lg relative bg-gradient-to-b h-40 mx-5 my-1 rounded-2xl from-[#EB5F59] to-[#F6B552]">
+                {users.map(User => (
+                    <div className="overflow-hidden shadow-lg relative bg-gradient-to-b h-40 mx-5 my-1 rounded-2xl from-[#EB5F59] to-[#F6B552]">
 
                     <div className="flex">
                         <div className="pl-4 py-5">
@@ -35,7 +91,7 @@ function Balance() {
                         <div className="pl-4 py-4">
 
                             <div className=" text-[#ffff]">Deposit</div>
-                            <div className=" text-[#ffff]">xxx-xxxxxx-x</div>
+                            <div className=" text-[#ffff]">{User.bankno}</div>
 
 
                         </div>
@@ -43,9 +99,10 @@ function Balance() {
                     </div>
 
                     <div className="text-end px-5 py-1  ">
-                        <div className=" text-[#ffff] font-bold text-2xl">9,999,999.00</div>
+                        <div className=" text-[#ffff] font-bold text-2xl">{User.balance}</div>
                     </div>
                 </div>
+                ))}
                 <div className="flex-grow mx-5 my-5 border-t border-gray-400"></div>
                 <div className='mx-5'>
                     <p>Quick access</p>
