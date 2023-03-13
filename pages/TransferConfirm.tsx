@@ -74,6 +74,7 @@ function TransferConfirm() {
 
         const reviceDeposit = await sessionStorage.getItem("reciveDeposit");
         const reviceAmount = await sessionStorage.getItem("Amount");
+        
         const amountstr = Number(reviceAmount).toFixed(2);
         setamount(amountstr!);
         setreviceDeposit(reviceDeposit!);

@@ -115,11 +115,6 @@ function History() {
   
     //Write data method.
     const addUser = async (name: string, age: string) => {
-      //Firestore not auto-generate
-      // const userRef = doc(db, "users", name);
-      // await setDoc(userRef, {name, age});
-  
-      //Firestore auto-generate
       const useruserCollectionRef = collection(db, "users");
       await addDoc(userCollectionRef, { name, age });
   
