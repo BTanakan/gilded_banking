@@ -22,7 +22,7 @@ const DashboardPage = () => {
 
   // Histroy
   const [history, sethistory] = useState<{ timestamp: string, transferTo: string, transfer_balance: string, type: string, userId: string }[]>([]);
-  useEffect(() => {
+  useEffect(()  =>  {
 
     //Fetch user methods.
     const getUsers = async () => {
@@ -38,31 +38,36 @@ const DashboardPage = () => {
     };
 
     const getUserById = async () => {
-      const email = user?.email;
-      const userinfo = await getDocs(query(userCollectionRef, where('email', '==', email)));
+      try {
+        const email = user?.email;
+        const userinfo = await getDocs(query(userCollectionRef, where('email', '==', email)));
 
-      if (userinfo.empty) {
-        throw new Error(`No user found`);
+        if (userinfo.empty) {
+          throw new Error(`No user found`);
+        }
+
+        const userDoc = userinfo.docs[0];
+        const userId = userDoc.data().userId;
+
+        const userList: { name: string, email: string, balance: string, bankno: string }[] = [];
+        userinfo.forEach(doc => {
+          const his_data = doc.data();
+          const { name, email, balance, bankno } = his_data;
+          userList.push({ name, email, balance, bankno })
+          console.log(his_data);
+          console.log(doc.data().bankno);
+
+        });
+        setUsers(userList);
+        // console.log(snapshot);
+      } catch (error) {
+        console.log(error);
       }
-
-      const userDoc = userinfo.docs[0];
-      const userId = userDoc.data().userId;
-
-      const userList: {  name: string, email: string, balance: string, bankno: string }[] = [];
-      userinfo.forEach(doc => {
-        const his_data = doc.data();
-        const { name, email, balance, bankno } = his_data;
-        userList.push({ name, email, balance, bankno })
-        console.log(his_data);
-        console.log(doc.data().bankno);
-
-      });
-      setUsers(userList);
-      // console.log(snapshot);
     };
 
     const getHistoryById = async () => {
-      const email = user?.email;
+      try {
+        const email = user?.email;
       const user2 = await getDocs(query(userCollectionRef, where('email', '==', email)));
 
       if (user2.empty) {
@@ -83,16 +88,22 @@ const DashboardPage = () => {
       snapshot.forEach(doc => {
         const his_data = doc.data();
         const { timestamp, transferTo, transfer_balance, type, userId } = his_data;
-        hisList.push({ timestamp, transferTo, transfer_balance, type, userId })
+        const formattedTransferBalance = transfer_balance.toFixed(2);
+        hisList.push({ timestamp, transferTo, transfer_balance: formattedTransferBalance, type, userId })
         console.log(his_data);
 
       });
       sethistory(hisList);
       // console.log(snapshot);
+      } catch (error) {
+        console.log(error);
+      }
     };
+
 
     getUserById();
     getHistoryById();
+    
   }, []);
 
 
@@ -130,6 +141,7 @@ const DashboardPage = () => {
 
   return (
     <div className="bg-white h-screen relative ">
+      
       <div className="bg-[#EB5F59] h-1/2 px-5 py-5">
         <div className="px-2 py-2  h-48 text-white rounded-lg bg-gradient-to-r  from-[#ED645A] to-[#FFD280]">
 
@@ -165,15 +177,16 @@ const DashboardPage = () => {
 
         {history.map((h, index) => (
           <div className="border-b mb-5 border-black columns-2">
-          <div className="">
-            <p className="text-lg font-bold capitalize ">{h.type}</p>
-            <p className="text-xs">{h.transferTo}</p>
+            <div className="">
+              <p className="text-lg font-bold capitalize ">{h.type}</p>
+              <p className="text-xs">{h.transferTo == "" ? h.userId : h.transferTo}</p>
+            </div>
+            <div className="grid-rows-2 grid  justify-end">
+              <p className={`text-lg font-bold text-right ${h.type === 'transfer' ? 'text-red-600 ' : 'text-green-500'}`}>{h.transfer_balance}</p>
+              <p className=" text-xs">{h.timestamp}</p>
+            </div>
+            
           </div>
-          <div className="grid-rows-2 grid justify-end ">
-            <p className={`text-lg font-bold text-right ${h.type === 'transfer' ? 'text-red-600' : 'text-green-500'}`}>{h.transfer_balance}</p>
-            <p className=" text-xs">{h.timestamp}</p>
-          </div>
-        </div>
         ))}
 
         {/* <div className="border-b border-black columns-2">
@@ -193,7 +206,7 @@ const DashboardPage = () => {
       </div>
       <Navbar />
     </div>
-    
+
     // <div className="">
     //   <div className="text-gray-600 px-12 py-24 mt-24 overflow-y-hidden">
     //     <h2 className="text-2xl font-semibold">You are logged in!</h2>
