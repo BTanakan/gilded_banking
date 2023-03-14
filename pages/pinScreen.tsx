@@ -111,11 +111,6 @@ export const pinScreen = () => {
                 />
                 <Numpad onDigitClick={handleDigitClick} onBackspace={handleBackspaceClick} />
             </div>
-            
-
-
-
-
         </div>
 
     )

@@ -70,6 +70,8 @@ function TransferConfirm() {
         sethours(hours.toString());
         setMinutes(minutes.toString());
 
+        await sessionStorage.setItem("Date", day.toString()+month.toString()+year.toString()+hours.toString()+minutes.toString());
+
         console.log(`${day} ${month} ${year} ${hours}:${minutes}`);
 
         const reviceDeposit = await sessionStorage.getItem("reciveDeposit");
@@ -135,7 +137,7 @@ function TransferConfirm() {
         // Create History of transaction of recive.
         await createHistory(timestamp, "", Number(dataToUpdate.balance), "recive", reciveDoc.data().userId)
 
-        router.push("dashboard");
+        router.push("TransferBill");
     }
 
     const createHistory = async (timestamp: string, transferTo: string, transfer_balance: number, type: string, userId: string) => {
