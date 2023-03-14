@@ -1,4 +1,13 @@
 // Import the functions you need from the SDKs you need
+import React from 'react'
+
+function firebase() {
+  return (
+    <div>firebase</div>
+  )
+}
+
+export default firebase
 import {initializeApp} from "firebase/app";
 import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
@@ -28,5 +37,10 @@ export const initFirebase = () => {
 export const db = () => {
   return getFirestore();
 }
+
+const auth = getAuth(app);
+
+
+export { auth};
 
 

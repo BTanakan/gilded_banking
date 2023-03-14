@@ -7,7 +7,7 @@ import Link from "next/link";
 import DashboardPage from "./dashboard";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useRouter } from "next/router";
-import { useAuth } from "./AuthContext";
+// import { useAuth } from "./AuthContext";
 import { useEffect, useState } from "react";
 import "firebase/firestore";
 import firebase from "firebase/app";
@@ -22,7 +22,7 @@ export default function Home() {
   const router = useRouter();
 
 
-  const { user2, login } = useAuth();
+  // const { user2, login } = useAuth();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
