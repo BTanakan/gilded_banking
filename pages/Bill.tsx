@@ -5,12 +5,61 @@ import lot from '../public/lot.jpg'
 import found from '../public/found.png'
 import water from '../public/water.jpg'
 import Image from 'next/image';
+
+import { initFirebase } from './firebase'
+import { getAuth } from 'firebase/auth'
+import { useAuthState } from 'react-firebase-hooks/auth'
+import { collection, getDocs, getFirestore, query, where } from 'firebase/firestore'
+import { useEffect, useState } from "react";
+
 function Bill() {
     const router = useRouter();
+    initFirebase();
+    const auth = getAuth();
+    const [user, loading] = useAuthState(auth);
+
+    const db = getFirestore(initFirebase()); //initalFirebase.
+    const [users, setUsers] = useState<{ name: string, email: string, balance: string, bankno: string }[]>([]);
+    const userCollectionRef = collection(db, "users"); //Cloud firebase collection.
+
     const handleLinkClick = () => {
         router.push('/TransferBank');
 
     };
+
+    const getUserById = async () => {
+        try {
+          const email = user?.email;
+          const userinfo = await getDocs(query(userCollectionRef, where('email', '==', email)));
+  
+          if (userinfo.empty) {
+            throw new Error(`No user found`);
+          }
+  
+          const userDoc = userinfo.docs[0];
+          const userId = userDoc.data().userId;
+  
+          const userList: { name: string, email: string, balance: string, bankno: string }[] = [];
+          userinfo.forEach(doc => {
+            const his_data = doc.data();
+            const { name, email, balance, bankno } = his_data;
+            userList.push({ name, email, balance, bankno })
+            console.log(his_data);
+            console.log(doc.data().bankno);
+  
+          });
+          setUsers(userList);
+          // console.log(snapshot);
+        } catch (error) {
+          console.log(error);
+        }
+      };
+
+      useEffect(() => {
+
+        getUserById();
+    }, []);
+
     return (
         <div>
             <ul className="flex bg-gradient-to-b h-20 from-[#EB5F59] to-[#F6B552] justify-start py-8">
@@ -40,7 +89,9 @@ function Bill() {
                     <div className="pl-4 py-4">
 
                         <div className=" text-[#ffff]">Deposit</div>
-                        <div className=" text-[#ffff]">xxx-xxxxxx-x</div>
+                        {users.map(User => (
+                        <div className=" text-[#ffff]">{User.bankno}</div>
+                        ))}
 
 
                     </div>
@@ -48,7 +99,9 @@ function Bill() {
                 </div>
 
                 <div className="text-end px-5 py-1  ">
-                    <div className=" text-[#ffff] font-bold text-2xl">9,999,999.00</div>
+                {users.map(User => (
+                    <div className=" text-[#ffff] font-bold text-2xl">{User.balance}</div>
+                    ))}
                 </div>
                 <div className='flex'>
                     <div className='px-5'>

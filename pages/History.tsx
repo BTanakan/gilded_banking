@@ -154,15 +154,18 @@ function History() {
                     <div className="pl-4 py-4">
 
                         <div className=" text-[#ffff]">Deposit</div>
-                        <div className=" text-[#ffff]">xxx-xxxxxx-x</div>
-
+                        {users.map(User => (
+                        <div className=" text-[#ffff]">{User.bankno}</div>
+                        ))}
 
                     </div>
 
                 </div>
 
                 <div className="text-end px-5 py-1  ">
-                    <div className=" text-[#ffff] font-bold text-2xl">9,999,999.00</div>
+                {users.map(User => (
+                    <div className=" text-[#ffff] font-bold text-2xl">{User.balance}</div>
+                ))}
                 </div>
                 <div className='flex'>
                     <div className='px-5'>
